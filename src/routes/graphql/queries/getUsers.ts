@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { GraphQLList } from 'graphql';
-import { UserType } from '../types/user.js';
+import { UserType } from '../types/index.js';
 
 export const GetUsersQuery = {
   type: new GraphQLList(UserType),

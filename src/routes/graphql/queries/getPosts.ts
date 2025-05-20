@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { GraphQLList } from 'graphql';
-import { PostType } from '../types/post.js';
+import { PostType } from '../types/index.js';
 
 export const GetPostsQuery = {
   type: new GraphQLList(PostType),
