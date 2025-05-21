@@ -1,10 +1,9 @@
 import { PrismaClient } from '@prisma/client';
-import { GraphQLNonNull } from 'graphql';
+import { GraphQLNonNull, GraphQLString } from 'graphql';
 import { UUIDType } from '../types/uuid.js';
-import { ProfileType } from '../types/profile.js';
 
 export const DeleteProfileMutation = {
-  type: ProfileType,
+  type: new GraphQLNonNull(GraphQLString),
   args: {
     id: { type: new GraphQLNonNull(UUIDType) },
   },
@@ -18,6 +17,6 @@ export const DeleteProfileMutation = {
     },
   ) {
     await prisma.profile.delete({ where: { id } });
-    return null;
+    return 'Profile deleted successfully';
   },
 };

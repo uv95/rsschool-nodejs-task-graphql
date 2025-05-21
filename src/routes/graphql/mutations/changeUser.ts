@@ -3,6 +3,7 @@ import { GraphQLNonNull } from 'graphql';
 import { UserType } from '../types/user.js';
 import { ChangeUserInput } from '../inputs/changeUserInput.js';
 import { UUIDType } from '../types/uuid.js';
+
 interface DTO {
   name: string;
   balance: number;

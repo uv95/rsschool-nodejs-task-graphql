@@ -1,10 +1,9 @@
 import { PrismaClient } from '@prisma/client';
-import { GraphQLNonNull } from 'graphql';
+import { GraphQLNonNull, GraphQLString } from 'graphql';
 import { UUIDType } from '../types/uuid.js';
-import { PostType } from '../types/post.js';
 
 export const DeletePostMutation = {
-  type: PostType,
+  type: new GraphQLNonNull(GraphQLString),
   args: {
     id: { type: new GraphQLNonNull(UUIDType) },
   },
@@ -18,6 +17,6 @@ export const DeletePostMutation = {
     },
   ) {
     await prisma.post.delete({ where: { id } });
-    return null;
+    return 'Post deleted successfully';
   },
 };
