@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { GraphQLNonNull } from 'graphql';
-import { ChangePostInput } from '../inputs/changePostInput.js';
+import { CreatePostInput } from '../inputs/createPostInput.js';
 import { PostType } from '../types/post.js';
 
 interface DTO {
@@ -12,7 +12,7 @@ interface DTO {
 export const CreatePostMutation = {
   type: PostType,
   args: {
-    dto: { type: new GraphQLNonNull(ChangePostInput) },
+    dto: { type: new GraphQLNonNull(CreatePostInput) },
   },
   async resolve(
     parent,
