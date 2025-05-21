@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
-import { MemberTypeType } from '../types/index.js';
 import { GraphQLList } from 'graphql';
+import { MemberTypeType } from '../types/memberType.js';
 
 export const GetMemberTypesQuery = {
   type: new GraphQLList(MemberTypeType),

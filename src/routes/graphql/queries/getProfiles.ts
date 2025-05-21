@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { GraphQLList } from 'graphql';
-import { ProfileType } from '../types/index.js';
+import { ProfileType } from '../types/profile.js';
 
 export const GetProfilesQuery = {
   type: new GraphQLList(ProfileType),

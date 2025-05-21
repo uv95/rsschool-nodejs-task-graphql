@@ -1,4 +1,3 @@
-import { PrismaClient } from '@prisma/client';
 import { GraphQLObjectType } from 'graphql';
 import {
   GetMemberTypeQuery,
@@ -9,11 +8,7 @@ import {
   GetProfilesQuery,
   GetUserQuery,
   GetUsersQuery,
-} from './queries/index.js';
-
-export interface Context {
-  prisma: PrismaClient;
-}
+} from './queries/queries.js';
 
 export const RootQueryType = new GraphQLObjectType({
   name: 'RootQueryType',

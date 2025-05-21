@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
-import { PostType, UUIDType } from '../types/index.js';
+import { PostType } from '../types/post.js';
+import { UUIDType } from '../types/uuid.js';
 
 export const GetPostQuery = {
   type: PostType,

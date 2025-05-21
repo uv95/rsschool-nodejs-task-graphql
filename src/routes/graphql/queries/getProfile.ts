@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
-import { ProfileType, UUIDType } from '../types/index.js';
+import { ProfileType } from '../types/profile.js';
+import { UUIDType } from '../types/uuid.js';
 
 export const GetProfileQuery = {
   type: ProfileType,

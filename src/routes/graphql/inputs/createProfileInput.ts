@@ -1,11 +1,18 @@
-import { GraphQLInputObjectType, GraphQLNonNull, GraphQLString } from 'graphql';
+import {
+  GraphQLBoolean,
+  GraphQLInputObjectType,
+  GraphQLInt,
+  GraphQLNonNull,
+} from 'graphql';
 import { UUIDType } from '../types/uuid.js';
+import { MemberTypeIdType } from '../types/memberTypeId.js';
 
-export const CreatePostInput = new GraphQLInputObjectType({
-  name: 'CreatePostInput',
+export const CreateProfileInput = new GraphQLInputObjectType({
+  name: 'CreateProfileInput',
   fields: {
-    title: { type: new GraphQLNonNull(GraphQLString) },
-    content: { type: new GraphQLNonNull(GraphQLString) },
-    authorId: { type: new GraphQLNonNull(UUIDType) },
+    isMale: { type: new GraphQLNonNull(GraphQLBoolean) },
+    yearOfBirth: { type: new GraphQLNonNull(GraphQLInt) },
+    userId: { type: new GraphQLNonNull(UUIDType) },
+    memberTypeId: { type: new GraphQLNonNull(MemberTypeIdType) },
   },
 });
