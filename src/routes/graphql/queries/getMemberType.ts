@@ -1,10 +1,10 @@
 import { PrismaClient } from '@prisma/client';
 import { MemberTypeType } from '../types/memberType.js';
-import { UUIDType } from '../types/uuid.js';
+import { MemberTypeIdType } from '../types/memberTypeId.js';
 
 export const GetMemberTypeQuery = {
   type: MemberTypeType,
-  args: { d: { type: UUIDType } },
+  args: { id: { type: MemberTypeIdType } },
   resolve(
     parent,
     { id }: { id: string },

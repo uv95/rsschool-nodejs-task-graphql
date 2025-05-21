@@ -4,7 +4,7 @@ import { ProfileType } from '../types/profile.js';
 
 export const GetProfilesQuery = {
   type: new GraphQLList(ProfileType),
-  resolve(
+  async resolve(
     parent,
     args,
     {
@@ -13,6 +13,6 @@ export const GetProfilesQuery = {
       prisma: PrismaClient;
     },
   ) {
-    return prisma.profile.findMany();
+    return await prisma.profile.findMany();
   },
 };

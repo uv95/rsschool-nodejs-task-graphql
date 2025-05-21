@@ -4,7 +4,7 @@ import { PostType } from '../types/post.js';
 
 export const GetPostsQuery = {
   type: new GraphQLList(PostType),
-  resolve(
+  async resolve(
     parent,
     args,
     {
@@ -13,6 +13,6 @@ export const GetPostsQuery = {
       prisma: PrismaClient;
     },
   ) {
-    return prisma.post.findMany();
+    return await prisma.post.findMany();
   },
 };

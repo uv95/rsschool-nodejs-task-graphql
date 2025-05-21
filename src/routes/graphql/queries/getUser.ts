@@ -5,7 +5,7 @@ import { UUIDType } from '../types/uuid.js';
 export const GetUserQuery = {
   type: UserType,
   args: { id: { type: UUIDType } },
-  resolve(
+  async resolve(
     parent,
     { id }: { id: string },
     {
@@ -14,7 +14,7 @@ export const GetUserQuery = {
       prisma: PrismaClient;
     },
   ) {
-    return prisma.user.findUnique({
+    return await prisma.user.findUnique({
       where: { id },
     });
   },

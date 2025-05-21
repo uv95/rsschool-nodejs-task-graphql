@@ -5,7 +5,7 @@ import { UUIDType } from '../types/uuid.js';
 export const GetProfileQuery = {
   type: ProfileType,
   args: { id: { type: UUIDType } },
-  resolve(
+  async resolve(
     parent,
     { id }: { id: string },
     {
@@ -14,7 +14,7 @@ export const GetProfileQuery = {
       prisma: PrismaClient;
     },
   ) {
-    return prisma.profile.findUnique({
+    return await prisma.profile.findUnique({
       where: { id },
     });
   },

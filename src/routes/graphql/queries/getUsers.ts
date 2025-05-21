@@ -4,7 +4,7 @@ import { UserType } from '../types/user.js';
 
 export const GetUsersQuery = {
   type: new GraphQLList(UserType),
-  resolve(
+  async resolve(
     parent,
     args,
     {
@@ -13,6 +13,6 @@ export const GetUsersQuery = {
       prisma: PrismaClient;
     },
   ) {
-    return prisma.user.findMany();
+    return await prisma.user.findMany();
   },
 };

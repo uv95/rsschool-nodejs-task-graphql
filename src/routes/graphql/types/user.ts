@@ -18,25 +18,25 @@ export const UserType: GraphQLObjectType = new GraphQLObjectType({
     balance: { type: new GraphQLNonNull(GraphQLFloat) },
     profile: {
       type: ProfileType,
-      resolve: (parent: User, args, { prisma }: { prisma: PrismaClient }) =>
-        prisma.profile.findUnique({ where: { userId: parent.id } }),
+      resolve: async (parent: User, args, { prisma }: { prisma: PrismaClient }) =>
+        await prisma.profile.findUnique({ where: { userId: parent.id } }),
     },
     posts: {
       type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(PostType))),
-      resolve: (parent: User, args, { prisma }: { prisma: PrismaClient }) =>
-        prisma.post.findMany({ where: { authorId: parent.id } }),
+      resolve: async (parent: User, args, { prisma }: { prisma: PrismaClient }) =>
+        await prisma.post.findMany({ where: { authorId: parent.id } }),
     },
     userSubscribedTo: {
       type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(UserType))),
-      resolve: (parent: User, args, { prisma }: { prisma: PrismaClient }) =>
-        prisma.user.findMany({
+      resolve: async (parent: User, args, { prisma }: { prisma: PrismaClient }) =>
+        await prisma.user.findMany({
           where: { subscribedToUser: { some: { subscriberId: parent.id } } },
         }),
     },
     subscribedToUser: {
       type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(UserType))),
-      resolve: (parent: User, args, { prisma }: { prisma: PrismaClient }) =>
-        prisma.user.findMany({
+      resolve: async (parent: User, args, { prisma }: { prisma: PrismaClient }) =>
+        await prisma.user.findMany({
           where: { userSubscribedTo: { some: { authorId: parent.id } } },
         }),
     },
