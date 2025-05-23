@@ -2,6 +2,13 @@ import { GraphQLBoolean, GraphQLInt, GraphQLNonNull, GraphQLObjectType } from 'g
 import { UUIDType } from './uuid.js';
 import { MemberTypeType } from './memberType.js';
 import { PrismaClient, Profile } from '@prisma/client';
+import { ProfileLoaders } from '../dataloaders/profileLoaders.js';
+
+interface Context {
+  loaders: {
+    profile: ProfileLoaders;
+  };
+}
 
 export const ProfileType = new GraphQLObjectType({
   name: 'Profile',
@@ -11,10 +18,8 @@ export const ProfileType = new GraphQLObjectType({
     yearOfBirth: { type: new GraphQLNonNull(GraphQLInt) },
     memberType: {
       type: new GraphQLNonNull(MemberTypeType),
-      async resolve(parent: Profile, args, { prisma }: { prisma: PrismaClient }) {
-        return await prisma.memberType.findFirst({
-          where: { profiles: { some: { id: parent.id } } },
-        });
+      async resolve(parent: Profile, args, { loaders }: Context) {
+        return loaders.profile.memberTypeByProfileId.load(parent.id);
       },
     },
   }),
